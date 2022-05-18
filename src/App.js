@@ -39,11 +39,13 @@ const { faker } = require('@faker-js/faker');
   
     return (
       <div className="App">
-        <h1>Cats</h1>
+        <h1 className='title'><span>Cats4Lyfe</span></h1>
+        <div className="container">
+        <div className="cat-cards">
         {zooAnimal.map((data, index) => {
           // map through API data stored in the state and display it to the user
           return (
-            <div key={index}>
+            <div className='cat-card' key={index}>
               <h3>Name: {faker.name.firstName()}</h3>
               <img src={data.url} alt="cat"/> 
               <p>£{Math.floor(Math.random()*1000)}</p>
@@ -51,6 +53,20 @@ const { faker } = require('@faker-js/faker');
             </div>
           )
         })}
+        </div>
+        <div className="basket-container">
+          <div className="basket-header">
+          <h3 className='basket-heading'>Basket</h3>
+          <h4 className='basket-removeAll'>Remove All</h4>
+          </div>
+          <div className="box"></div>
+          <div className="box"></div>
+          <div className="box"></div>
+        <div className="basket-footer">
+          <button className="basket-buyBtn">Buy da kitties</button>
+        </div>
+        </div>
+      </div>
       </div>
     );
   }
