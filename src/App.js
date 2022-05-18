@@ -44,8 +44,10 @@ const { faker } = require('@faker-js/faker');
           // map through API data stored in the state and display it to the user
           return (
             <div key={index}>
-              <h3>Name: {faker.name.findName()}</h3>
-              <img src={data.url} alt="film"/>              
+              <h3>Name: {faker.name.firstName()}</h3>
+              <img src={data.url} alt="cat"/> 
+              <p>£{Math.floor(Math.random()*1000)}</p>
+              <button>Add to basket</button>             
             </div>
           )
         })}
