@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Pacifico&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,12 @@
 }
 
 body {
-  background-color: hsl(306, 100%, 89%);
+  /* background-color: hsla(305, 69%, 35%, 0.408); */
+  background: linear-gradient(45deg, #eaf2d6 0%, rgba(225, 5, 34, 0) 70%) 
+              repeat scroll 0% 0%, linear-gradient(135deg, #ea9ab3 10%, rgba(49, 5, 209, 0) 80%) 
+              repeat scroll 0% 0%, linear-gradient(225deg, #efcee3 10%, rgba(10, 219, 216, 0) 80%) 
+              repeat scroll 0% 0%, rgba(0, 0, 0, 0) linear-gradient(315deg, #ea9ab1 100%, rgba(9, 245, 5, 0) 70%) repeat scroll 0% 0%;
+  font-family: 'Libre Baskerville', serif;
 }
 
 h1, h2, h3, h4 {
@@ -22,6 +28,11 @@ h1, h2, h3, h4 {
 .title {
   text-align: center;
   font-size: 4rem;
+  margin-bottom: 10px;
+  font-family: 'Pacifico', cursive;
+  color: #ea9ab1;
+  -webkit-text-stroke: 1px black;
+  letter-spacing: 5px;
 }
 
 .title span {
@@ -30,10 +41,21 @@ h1, h2, h3, h4 {
   border-radius: 20px;
 }
 
+.description-container {
+  height: auto;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .cat-cards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 60%;
+  background-color: #fff;
+  box-shadow: 10px 20px 30px #1265a133;
+  border-radius: 10px;
 }
 
 .cat-card {
@@ -43,6 +65,7 @@ h1, h2, h3, h4 {
 img {
   width: 300px;
   height: 200px;
+  border-radius: 10px;
 }
 
 .basket-container {
@@ -53,7 +76,7 @@ img {
   padding: 10px;
   background-color: #fff;
   border-radius: 20px;
-  box-shadow: 0px 25px 40px #1687d933;;
+  box-shadow: 0px 25px 40px #1687d933;
   /* position: absolute;
   right: 60px;
   top:-100px; */

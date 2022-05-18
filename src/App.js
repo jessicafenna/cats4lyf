@@ -4,7 +4,7 @@ import {  useEffect, useState } from 'react';
 const { faker } = require('@faker-js/faker');
 // import Modal from './components/modal';
 
- 
+
   const App = () => {
     const [zooAnimal, setZooAnimal] = useState([]);
     
@@ -19,7 +19,7 @@ const { faker } = require('@faker-js/faker');
         if(!response.ok){
           throw new Error(response.statusText)
         }
-     
+
         const data = await response.json();
   
         console.log(data)
@@ -30,7 +30,7 @@ const { faker } = require('@faker-js/faker');
       }
     }
     
-   
+
     useEffect(() => {
       
       fetchData()
@@ -40,6 +40,11 @@ const { faker } = require('@faker-js/faker');
     return (
       <div className="App">
         <h1 className='title'><span>Cats4Lyfe</span></h1>
+        <div className="description-container">
+          <h3 className="description-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate repellat natus, quam maiores molestias, esse amet hic soluta fugiat harum autem corrupti itaque error corporis facilis dolor beatae commodi sunt!
+          </h3>
+        </div>
         <div className="container">
         <div className="cat-cards">
         {zooAnimal.map((data, index) => {
