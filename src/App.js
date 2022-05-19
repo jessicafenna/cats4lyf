@@ -6,10 +6,10 @@ const { faker } = require('@faker-js/faker');
 
  
   const App = () => {
-    const [zooAnimal, setZooAnimal] = useState([]);
-    
-    
-    const fetchData = async () => {
+    const [cat, setCat] = useState([
+      ]);
+    // let name = faker.name.firstName() 
+    const fetchImageData = async () => {
       
       try {
   
@@ -21,38 +21,46 @@ const { faker } = require('@faker-js/faker');
         }
      
         const data = await response.json();
-  
-        console.log(data)
-        setZooAnimal(data)
-      } catch (err) {
+        return data 
         
+      } catch (err) {
         console.log(err)
       }
-    }
-    
-   
+    };  
     useEffect(() => {
-      
-      fetchData()
-  
-    }, [])
-  
+      const fetchData = async () =>{ 
+        
+          let catList = await fetchImageData();
+             catList.map((cat)=>{ 
+                
+                cat.name = faker.name.firstName();
+                cat.price = faker.commerce.price();
+               
+        })        
+        setCat(catList);
+        console.log(cat)
+    }
+    fetchData();
+    }, []) ;
+
+
     return (
       <div className="App">
-        <h1>Cats</h1>
-        {zooAnimal.map((data, index) => {
-          // map through API data stored in the state and display it to the user
-          return (
+        <h1>Cats</h1>  
+        {cat.map((cat, index)=>(
             <div key={index}>
-              <h3>Name: {faker.name.firstName()}</h3>
-              <img src={data.url} alt="cat"/> 
-              <p>£{Math.floor(Math.random()*1000)}</p>
-              <button>Add to basket</button>             
-            </div>
-          )
-        })}
+              <h3>Name: {cat.name}</h3>              
+              <img src={cat.url} alt="cat"/> 
+              <p>£{cat.price}</p>
+              id = {cat.id}
+            <button>Add to basket</button>             
+          </div>
+        ))}      
+             
       </div>
+
     );
+   
   }
   
 
