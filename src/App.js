@@ -7,6 +7,7 @@ const { faker } = require('@faker-js/faker');
 
   const App = () => {
     const [cat, setCat] = useState([]);
+    const [basket, setBasket] = useState([]);
     // let name = faker.name.firstName() 
     const fetchImageData = async () => {
       
@@ -42,7 +43,20 @@ const { faker } = require('@faker-js/faker');
     }, []) ;
 
 
+  const addToBasket = (cat) => {
+    console.log('Cat in the basket')
+    setBasket([...basket, cat]);
+    console.log(cat)
+  }
 
+  const removeFromBasket = (removeCat) => {
+    setBasket(basket.filter((cat) => cat !== removeCat))
+  }
+  
+  const initialAmount = {
+    totalAmount: 0,
+  }
+    
   
     return (
         <div className="App">
@@ -63,22 +77,30 @@ const { faker } = require('@faker-js/faker');
             return (
             <div className='cat-card' key={index}>
               <h3>Name: {cat.name}</h3>
-              <img src={cat.url} alt="cat"/> 
+              <img src={cat.url} alt="catto"/> 
               <p>£{cat.price}</p>
-              <button>Add to basket</button>             
+              <button onClick={() => addToBasket(cat)}>Add to basket</button>             
             </div>
             )
         })}
         </div>
         <div className="basket-container">
           <div className="basket-header">
-          <h3 className='basket-heading'>Basket</h3>
+          <h3 className='basket-heading'>Basket ({basket.length})</h3>
           <h4 className='basket-removeAll'>Remove All</h4>
           </div>
-          <div className="box"></div>
-          <div className="box"></div>
-          <div className="box"></div>
+          {basket.map((cat, index) => {
+            return (
+            <div className='basket-cat-card' key={index}>
+              <h3>{cat.name}</h3>
+              <p>£{cat.price}</p>
+              <button onClick={() => removeFromBasket(cat)}>❌</button>            
+            </div>
+            )
+        })}
         <div className="basket-footer">
+        
+          <h4>Total: {initialAmount.totalAmount}</h4>
           <button className="basket-buyBtn">Buy da kitties</button>
         </div>
         </div>
@@ -88,6 +110,47 @@ const { faker } = require('@faker-js/faker');
     );
 
   }
-  
+
+
 
 export default App;
+
+
+
+// var shoppingCart = function () {
+//   var obj = {}, items = [];
+
+//   obj.AddItem = function (itemNo, quantity, price) {
+//       var item = {};
+//       item.itemNo = itemNo;
+//       item.quantity = quantity;
+//       item.price = price;
+//       items.push(item)
+//   };
+
+//   obj.GetAllItems = function () {
+//       return items;
+//   };
+
+//   obj.GetItemByNo = function (item) {
+//       for (var i = 0; i < items.length; i++) {
+//           if (items[i].itemNo === item)
+//               return item[i];
+//       }
+//       return null;
+//   };
+
+//   obj.CalculateTotal = function () {
+//       var total = 0;
+//       for (var i = 0; i < items.length; i++) {
+//           total = total + (items[i].quantity * items[i].price);
+//       }
+//       return total;
+//   };
+
+//   return obj;
+// };
+// var cart = new shoppingCart();
+
+// var total = shoppingcart.CalculateTotal();
+
