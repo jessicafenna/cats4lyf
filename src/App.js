@@ -6,11 +6,7 @@ const { faker } = require('@faker-js/faker');
 
 
   const App = () => {
-    const [cat, setCat] = useState([
-      {
-        id: '22b'
-      }
-    ]);
+    const [cat, setCat] = useState([]);
     // let name = faker.name.firstName() 
     const fetchImageData = async () => {
       
@@ -34,15 +30,13 @@ const { faker } = require('@faker-js/faker');
     
     useEffect(() => {
       const fetchData = async () =>{ 
-        
           let catList = await fetchImageData();
             catList.map((cat)=>{ 
                 
                 cat.name = faker.name.firstName();
-                cat.price = faker.commerce.price();
+                cat.price = faker.commerce.price(500);
         })        
         setCat(catList);
-        console.log(cat)
     }
     fetchData();
     }, []) ;
@@ -70,7 +64,7 @@ const { faker } = require('@faker-js/faker');
             <div className='cat-card' key={index}>
               <h3>Name: {cat.name}</h3>
               <img src={cat.url} alt="cat"/> 
-              <p>£{Math.floor(Math.random()*1000)}</p>
+              <p>£{cat.price}</p>
               <button>Add to basket</button>             
             </div>
             )
