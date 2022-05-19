@@ -6,7 +6,12 @@ const { faker } = require('@faker-js/faker');
 
 
   const App = () => {
-    const [zooAnimal, setZooAnimal] = useState([]);
+    const [cat, setCat] = useState([]);
+    const [basket, setBasket] = useState([]);
+    const addToBasket = (feline) => {
+      console.log('We are at the basket')
+      setBasket([...basket, feline]);
+    };
     
     
     const fetchData = async () => {
@@ -23,7 +28,7 @@ const { faker } = require('@faker-js/faker');
         const data = await response.json();
   
         console.log(data)
-        setZooAnimal(data)
+        setCat(data)
       } catch (err) {
         
         console.log(err)
@@ -36,10 +41,16 @@ const { faker } = require('@faker-js/faker');
       fetchData()
   
     }, [])
+
+
   
     return (
-      <div className="App">
-        <h1 className='title'><span>Cats4Lyfe</span></h1>
+        <div className="App">
+        <div className="title-container">
+        <span className='title'>Cats</span>
+        <span className='title-4 title'>4</span>
+        <span className='title-lyfe title'>Lyfe</span>
+        </div>
         <div className="description-container">
           <h3 className="description-text">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate repellat natus, quam maiores molestias, esse amet hic soluta fugiat harum autem corrupti itaque error corporis facilis dolor beatae commodi sunt!
@@ -47,14 +58,14 @@ const { faker } = require('@faker-js/faker');
         </div>
         <div className="container">
         <div className="cat-cards">
-        {zooAnimal.map((data, index) => {
+        {cat.map((data, index) => {
           // map through API data stored in the state and display it to the user
           return (
             <div className='cat-card' key={index}>
               <h3>Name: {faker.name.firstName()}</h3>
               <img src={data.url} alt="cat"/> 
               <p>£{Math.floor(Math.random()*1000)}</p>
-              <button>Add to basket</button>             
+              <button onClick={() => addToBasket()}>Add to basket</button>             
             </div>
           )
         })}
