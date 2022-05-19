@@ -6,15 +6,13 @@ const { faker } = require('@faker-js/faker');
 
 
   const App = () => {
-    const [cat, setCat] = useState([]);
-    const [basket, setBasket] = useState([]);
-    const addToBasket = (feline) => {
-      console.log('We are at the basket')
-      setBasket([...basket, feline]);
-    };
-    
-    
-    const fetchData = async () => {
+    const [cat, setCat] = useState([
+      {
+        id: '22b'
+      }
+    ]);
+    // let name = faker.name.firstName() 
+    const fetchImageData = async () => {
       
       try {
   
@@ -26,21 +24,29 @@ const { faker } = require('@faker-js/faker');
         }
 
         const data = await response.json();
-  
         console.log(data)
-        setCat(data)
-      } catch (err) {
+        return data 
         
+      } catch (err) {
         console.log(err)
       }
     }
     
-
     useEffect(() => {
-      
-      fetchData()
-  
-    }, [])
+      const fetchData = async () =>{ 
+        
+          let catList = await fetchImageData();
+            catList.map((cat)=>{ 
+                
+                cat.name = faker.name.firstName();
+                cat.price = faker.commerce.price();
+        })        
+        setCat(catList);
+        console.log(cat)
+    }
+    fetchData();
+    }, []) ;
+
 
 
   
@@ -58,16 +64,16 @@ const { faker } = require('@faker-js/faker');
         </div>
         <div className="container">
         <div className="cat-cards">
-        {cat.map((data, index) => {
+        {cat.map((cat, index) => {
           // map through API data stored in the state and display it to the user
-          return (
+            return (
             <div className='cat-card' key={index}>
-              <h3>Name: {faker.name.firstName()}</h3>
-              <img src={data.url} alt="cat"/> 
+              <h3>Name: {cat.name}</h3>
+              <img src={cat.url} alt="cat"/> 
               <p>£{Math.floor(Math.random()*1000)}</p>
-              <button onClick={() => addToBasket()}>Add to basket</button>             
+              <button>Add to basket</button>             
             </div>
-          )
+            )
         })}
         </div>
         <div className="basket-container">
@@ -84,7 +90,9 @@ const { faker } = require('@faker-js/faker');
         </div>
       </div>
       </div>
+
     );
+
   }
   
 
