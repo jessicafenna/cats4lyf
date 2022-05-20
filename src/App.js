@@ -1,13 +1,20 @@
 
 import './App.css';
 import {  useEffect, useState } from 'react';
+// import Basket from './components/basket';
 const { faker } = require('@faker-js/faker');
 // import Modal from './components/modal';
 
  
   const App = () => {
-    const [cat, setCat] = useState([
-      ]);
+    const [cat, setCat] = useState([]);
+    const [cart, setCart] = useState([]);
+
+    const addtoCart = (cat) => { 
+      console.log ("add to cart")
+      setCart([...cart, cat]);
+     
+    }
     // let name = faker.name.firstName() 
     const fetchImageData = async () => {
       
@@ -38,10 +45,12 @@ const { faker } = require('@faker-js/faker');
                
         })        
         setCat(catList);
-        console.log(cat)
     }
     fetchData();
-    }, []) ;
+    }, []);
+
+    
+    
 
 
     return (
@@ -53,7 +62,8 @@ const { faker } = require('@faker-js/faker');
               <img src={cat.url} alt="cat"/> 
               <p>£{cat.price}</p>
               id = {cat.id}
-            <button>Add to basket</button>             
+             <button onClick={()=>addtoCart(cat)}>Add to basket</button> 
+                    
           </div>
         ))}      
              
