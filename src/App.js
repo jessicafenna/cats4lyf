@@ -1,10 +1,6 @@
 import './App.css';
 import {  useEffect, useState } from 'react';
-// import Basket from './components/basket';
 const { faker } = require('@faker-js/faker');
-
-// import Modal from './components/modal';
-
 
 const App = () => {
   const [cat, setCat] = useState([]);
@@ -47,15 +43,11 @@ const addToBasket = (cat) => {
   setBasket([...basket, cat]);
   console.log(cat)
 }
+let total = basket.reduce((accumulator,cat) => accumulator + parseInt(cat.price), 0)
 
 const removeFromBasket = (removeCat) => {
   setBasket(basket.filter((cat) => cat !== removeCat))
-}
-
-// const initialAmount = {
-//   totalAmount: 0,
-// }
-  
+} 
 
   return (
       <div className="App">
@@ -100,7 +92,7 @@ const removeFromBasket = (removeCat) => {
       })}
       <div className="basket-footer">
       
-        <h4>Total: </h4>
+        <h4>Total: £{total}</h4>
         <button className="basket-buyBtn">Buy da kitties</button>
       </div>
       </div>
