@@ -18,6 +18,11 @@
     margin-left: 10%;
     margin-right: 10%;
 }
+#cat-name {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 800;
+}
 .color-switcher {
     display: block;
     margin-right: 2px;
@@ -27,4 +32,25 @@
 }
 .cat-app {
     position: relative;
+}
+.paragraph-split {
+    font-weight: 200;
+}
+.code-bit {
+    background-color: rgb(243, 243, 243);
+}
+.my-basket {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
+.total-spacing-1 {
+    margin-left: 25px;
+    margin-top: 75px;
+}
+.total-spacing-2 {
+    font-weight: 800;
+}
+.button-spacing-1 {
+    margin-right: 50%;
 }
