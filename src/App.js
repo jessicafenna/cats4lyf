@@ -1,6 +1,7 @@
 import './App.css';
 import {  useEffect, useState } from 'react';
 const { faker } = require('@faker-js/faker');
+
 // import Modal from './components/modal';
 
 
@@ -31,7 +32,6 @@ const App = () => {
     const fetchData = async () =>{ 
         let catList = await fetchImageData();
           catList.map((cat)=>{ 
-              
               cat.name = faker.name.firstName();
               cat.price = faker.commerce.price(500);
       })        
@@ -51,9 +51,9 @@ const removeFromBasket = (removeCat) => {
   setBasket(basket.filter((cat) => cat !== removeCat))
 }
 
-const initialAmount = {
-  totalAmount: 0,
-}
+// const initialAmount = {
+//   totalAmount: 0,
+// }
   
 
   return (
@@ -82,6 +82,7 @@ const initialAmount = {
           )
       })}
       </div>
+
       <div className="basket-container">
         <div className="basket-header">
         <h3 className='basket-heading'>Basket ({basket.length})</h3>
@@ -98,7 +99,7 @@ const initialAmount = {
       })}
       <div className="basket-footer">
       
-        <h4>Total: {initialAmount.totalAmount}</h4>
+        <h4>Total: </h4>
         <button className="basket-buyBtn">Buy da kitties</button>
       </div>
       </div>
