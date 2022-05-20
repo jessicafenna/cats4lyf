@@ -2,8 +2,6 @@ import './App.css';
 import {  useEffect, useState } from 'react';
 const { faker } = require('@faker-js/faker');
 
-// import Modal from './components/modal';
-
 
 const App = () => {
   const [cat, setCat] = useState([]);
@@ -38,7 +36,7 @@ const App = () => {
       setCat(catList);
   }
   fetchData();
-  }, []) ;
+  }, []);
 
 
 const addToBasket = (cat) => {
@@ -50,10 +48,6 @@ const addToBasket = (cat) => {
 const removeFromBasket = (removeCat) => {
   setBasket(basket.filter((cat) => cat !== removeCat))
 }
-
-// const initialAmount = {
-//   totalAmount: 0,
-// }
   
 
   return (
